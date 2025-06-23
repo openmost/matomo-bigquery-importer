@@ -56,7 +56,7 @@ Scroll all the way down and click the blue **"Create"** button.
 
 Now that your service is created, you need to add source files (the code it will execute).
 
-- In the file `index.js`, paste the contents of [`GoogleCloudRun/index.js`](./GoogleCloudRun/index.js)
+- In the file `index.js`, paste the contents of [`GoogleCloudRun/index.js`](./GoogleCloudRun/index.js) (set `importDataFromAPI` as entry point function name)
 - In the file `package.json`, paste the contents of [`GoogleCloudRun/package.json`](./GoogleCloudRun/package.json)
 
 > In the `index.js` file, the first few lines need to be updated:

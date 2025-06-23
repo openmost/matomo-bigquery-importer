@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c6281db-0e81-4c2c-af53-ad7415950326" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoogleCloudRun/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GoogleCloudRun/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="3c6281db-0e81-4c2c-af53-ad7415950326" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +70,7 @@
       <updated>1750716523536</updated>
       <workItem from="1750716524607" duration="160000" />
       <workItem from="1750716833364" duration="4080000" />
-      <workItem from="1750721567815" duration="45000" />
+      <workItem from="1750721567815" duration="218000" />
     </task>
     <servers />
   </component>
