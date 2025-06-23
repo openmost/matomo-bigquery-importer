@@ -1,0 +1,9 @@
+{
+  "name": "matomo-bq-import",
+  "version": "1.0.0",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.0.0",
+    "@google-cloud/bigquery": "^7.0.0",
+    "axios": "^1.6.0"
+  }
+}

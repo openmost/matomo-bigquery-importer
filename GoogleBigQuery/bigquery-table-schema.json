@@ -1,0 +1,649 @@
+[
+  {
+    "name": "idSite",
+    "type": "INTEGER"
+  },
+  {
+    "name": "idVisit",
+    "type": "INTEGER"
+  },
+  {
+    "name": "visitIp",
+    "type": "STRING"
+  },
+  {
+    "name": "visitorId",
+    "type": "STRING"
+  },
+  {
+    "name": "fingerprint",
+    "type": "STRING"
+  },
+  {
+    "name": "actionDetails",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "type",
+        "type": "STRING"
+      },
+      {
+        "name": "url",
+        "type": "STRING"
+      },
+      {
+        "name": "pageTitle",
+        "type": "STRING"
+      },
+      {
+        "name": "pageIdAction",
+        "type": "INTEGER"
+      },
+      {
+        "name": "idpageview",
+        "type": "STRING"
+      },
+      {
+        "name": "serverTimePretty",
+        "type": "STRING"
+      },
+      {
+        "name": "pageId",
+        "type": "INTEGER"
+      },
+      {
+        "name": "pageLoadTime",
+        "type": "STRING"
+      },
+      {
+        "name": "timeSpent",
+        "type": "INTEGER"
+      },
+      {
+        "name": "timeSpentPretty",
+        "type": "STRING"
+      },
+      {
+        "name": "pageLoadTimeMilliseconds",
+        "type": "INTEGER"
+      },
+      {
+        "name": "pageviewPosition",
+        "type": "INTEGER"
+      },
+      {
+        "name": "title",
+        "type": "STRING"
+      },
+      {
+        "name": "subtitle",
+        "type": "STRING"
+      },
+      {
+        "name": "eventCategory",
+        "type": "STRING"
+      },
+      {
+        "name": "eventAction",
+        "type": "STRING"
+      },
+      {
+        "name": "eventName",
+        "type": "STRING"
+      },
+      {
+        "name": "eventValue",
+        "type": "STRING"
+      },
+      {
+        "name": "icon",
+        "type": "STRING"
+      },
+      {
+        "name": "iconSVG",
+        "type": "STRING"
+      },
+      {
+        "name": "timestamp",
+        "type": "INTEGER"
+      },
+      {
+        "name": "dimension1",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension2",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension3",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension4",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension5",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension6",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension7",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension8",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension9",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension10",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension11",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension12",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension13",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension14",
+        "type": "STRING"
+      },
+      {
+        "name": "dimension15",
+        "type": "STRING"
+      }
+    ]
+  },
+  {
+    "name": "goalConversions",
+    "type": "INTEGER"
+  },
+  {
+    "name": "siteCurrency",
+    "type": "STRING"
+  },
+  {
+    "name": "siteCurrencySymbol",
+    "type": "STRING"
+  },
+  {
+    "name": "serverDate",
+    "type": "STRING"
+  },
+  {
+    "name": "visitServerHour",
+    "type": "STRING"
+  },
+  {
+    "name": "lastActionTimestamp",
+    "type": "INTEGER"
+  },
+  {
+    "name": "lastActionDateTime",
+    "type": "STRING"
+  },
+  {
+    "name": "siteName",
+    "type": "STRING"
+  },
+  {
+    "name": "serverTimestamp",
+    "type": "INTEGER"
+  },
+  {
+    "name": "firstActionTimestamp",
+    "type": "INTEGER"
+  },
+  {
+    "name": "serverTimePretty",
+    "type": "STRING"
+  },
+  {
+    "name": "serverDatePretty",
+    "type": "STRING"
+  },
+  {
+    "name": "serverDatePrettyFirstAction",
+    "type": "STRING"
+  },
+  {
+    "name": "serverTimePrettyFirstAction",
+    "type": "STRING"
+  },
+  {
+    "name": "userId",
+    "type": "STRING"
+  },
+  {
+    "name": "visitorType",
+    "type": "STRING"
+  },
+  {
+    "name": "visitorTypeIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "visitConverted",
+    "type": "INTEGER"
+  },
+  {
+    "name": "visitConvertedIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "visitCount",
+    "type": "INTEGER"
+  },
+  {
+    "name": "totalEcommerceItems",
+    "type": "INTEGER"
+  },
+  {
+    "name": "totalAbandonedCartsRevenue",
+    "type": "INTEGER"
+  },
+  {
+    "name": "visitEcommerceStatus",
+    "type": "STRING"
+  },
+  {
+    "name": "visitEcommerceStatusIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "daysSinceFirstVisit",
+    "type": "INTEGER"
+  },
+  {
+    "name": "secondsSinceFirstVisit",
+    "type": "INTEGER"
+  },
+  {
+    "name": "daysSinceLastEcommerceOrder",
+    "type": "INTEGER"
+  },
+  {
+    "name": "secondsSinceLastEcommerceOrder",
+    "type": "INTEGER"
+  },
+  {
+    "name": "visitDuration",
+    "type": "INTEGER"
+  },
+  {
+    "name": "visitDurationPretty",
+    "type": "STRING"
+  },
+  {
+    "name": "searches",
+    "type": "INTEGER"
+  },
+  {
+    "name": "actions",
+    "type": "INTEGER"
+  },
+  {
+    "name": "interactions",
+    "type": "INTEGER"
+  },
+  {
+    "name": "referrerType",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerTypeName",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerName",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerKeyword",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerKeywordPosition",
+    "type": "INTEGER"
+  },
+  {
+    "name": "referrerUrl",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerSearchEngineUrl",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerSearchEngineIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerSocialNetworkUrl",
+    "type": "STRING"
+  },
+  {
+    "name": "referrerSocialNetworkIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "languageCode",
+    "type": "STRING"
+  },
+  {
+    "name": "language",
+    "type": "STRING"
+  },
+  {
+    "name": "deviceType",
+    "type": "STRING"
+  },
+  {
+    "name": "deviceTypeIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "deviceBrand",
+    "type": "STRING"
+  },
+  {
+    "name": "deviceModel",
+    "type": "STRING"
+  },
+  {
+    "name": "operatingSystem",
+    "type": "STRING"
+  },
+  {
+    "name": "operatingSystemName",
+    "type": "STRING"
+  },
+  {
+    "name": "operatingSystemIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "operatingSystemCode",
+    "type": "STRING"
+  },
+  {
+    "name": "operatingSystemVersion",
+    "type": "STRING"
+  },
+  {
+    "name": "browserFamily",
+    "type": "STRING"
+  },
+  {
+    "name": "browserFamilyDescription",
+    "type": "STRING"
+  },
+  {
+    "name": "browser",
+    "type": "STRING"
+  },
+  {
+    "name": "browserName",
+    "type": "STRING"
+  },
+  {
+    "name": "browserIcon",
+    "type": "STRING"
+  },
+  {
+    "name": "browserCode",
+    "type": "STRING"
+  },
+  {
+    "name": "browserVersion",
+    "type": "STRING"
+  },
+  {
+    "name": "events",
+    "type": "INTEGER"
+  },
+  {
+    "name": "continent",
+    "type": "STRING"
+  },
+  {
+    "name": "continentCode",
+    "type": "STRING"
+  },
+  {
+    "name": "country",
+    "type": "STRING"
+  },
+  {
+    "name": "countryCode",
+    "type": "STRING"
+  },
+  {
+    "name": "countryFlag",
+    "type": "STRING"
+  },
+  {
+    "name": "region",
+    "type": "STRING"
+  },
+  {
+    "name": "regionCode",
+    "type": "STRING"
+  },
+  {
+    "name": "city",
+    "type": "STRING"
+  },
+  {
+    "name": "location",
+    "type": "STRING"
+  },
+  {
+    "name": "latitude",
+    "type": "STRING"
+  },
+  {
+    "name": "longitude",
+    "type": "STRING"
+  },
+  {
+    "name": "visitLocalTime",
+    "type": "STRING"
+  },
+  {
+    "name": "visitLocalHour",
+    "type": "STRING"
+  },
+  {
+    "name": "daysSinceLastVisit",
+    "type": "INTEGER"
+  },
+  {
+    "name": "secondsSinceLastVisit",
+    "type": "INTEGER"
+  },
+  {
+    "name": "resolution",
+    "type": "STRING"
+  },
+  {
+    "name": "plugins",
+    "type": "STRING"
+  },
+  {
+    "name": "pluginsIcons",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "pluginIcon",
+        "type": "STRING"
+      },
+      {
+        "name": "pluginName",
+        "type": "STRING"
+      }
+    ]
+  },
+  {
+    "name": "experiments",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "idexperiment",
+        "type": "STRING"
+      },
+      {
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "name": "variation",
+        "type": "RECORD",
+        "fields": [
+          {
+            "name": "idvariation",
+            "type": "INTEGER"
+          },
+          {
+            "name": "name",
+            "type": "STRING"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "adClickId",
+    "type": "STRING"
+  },
+  {
+    "name": "adProviderId",
+    "type": "STRING"
+  },
+  {
+    "name": "adProviderName",
+    "type": "STRING"
+  },
+  {
+    "name": "crashes",
+    "type": "INTEGER"
+  },
+  {
+    "name": "formConversions",
+    "type": "INTEGER"
+  },
+  {
+    "name": "sessionReplayUrl",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignId",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignContent",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignKeyword",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignMedium",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignName",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignSource",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignGroup",
+    "type": "STRING"
+  },
+  {
+    "name": "campaignPlacement",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension1",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension2",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension3",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension4",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension5",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension6",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension7",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension8",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension9",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension10",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension11",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension12",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension13",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension14",
+    "type": "STRING"
+  },
+  {
+    "name": "dimension15",
+    "type": "STRING"
+  }
+]
