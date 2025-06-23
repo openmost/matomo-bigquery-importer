@@ -1,84 +1,105 @@
+# Google BigQuery
 
-## BigQuery
+Create a BigQuery account associated with a Google Cloud Console project.
 
-Créez vous un compte bigQuery associé à une propriété Google Cloud Console.
+> Make sure you have an up-to-date billing account in Google Cloud Console.
 
-> Assurez-vosu d'avoir un compte de facturation Google Cloud Console à jour.
+### Enable the BigQuery API
 
-### Activez l'API BigQuery
+If this is your first time using BigQuery, you’ll need to enable the **BigQuery API** from your Google Cloud account.
 
+### Create a Dataset
 
-### Créez un dataset
+In your BigQuery project, click on the three vertical dots to the right of the project name and click **"Create dataset"**.
 
-Dans votre projet BigQuery, cliquez sur les trois points verticaux situés à droite du nom du projet et cliquez sur "Créer un ensemble de données"
+Name your dataset: `matomo_extract`.
 
-Nommez votre ensemble de données `matomo_extract`.
+Set the **Region** to: `europe-west1 (Belgium)`.
 
-Définissez "Région" sur `europe-west-1 (Belgique)`.
+Click **"Create dataset"**.
 
-Cliquez sur "Créer un ensemble de données".
+### Create a Table in the Dataset
 
-### Créez une table dans le dataset
+On the newly created dataset, click on the three vertical dots next to the dataset and then on **"Create table"**.
 
-Sur l'ensemble de données (dataset) fraichement créé, cliquez sur les trois points verticaux en face du dataset et ensuite sur "Créer une table".
+In the **"Table*"** field, enter the value `matomo_visits`.
 
-Dans le champs "Table*" saisissez la valeur `matomo_visits`.
+Enable the **"Edit as text"** switch and paste the contents of the file [`GoogleBigQuery/bigquery-table-schema.json`](./GoogleBigQuery/bigquery-table-schema.json) from this repo.
 
-Activez le switch "Modifier sous forme de texte" et collez le contenu du fichier `GoogleBigQuery/bigquery-table-schema.json` de ce repo.
+Then click the blue **"Create table"** button.
 
-Cliquez ensuite sur le bouton bleu "Créer une table".
+# Google Cloud Run
 
-## Google Cloud Run
+Now that our BigQuery table is created, we need to populate it with data from the Matomo API.
 
-Maintenant que notre table BigQuery est crée, il va valloir l'alimenter avec des données de l'API de Matomo.
+To do this, we’ll need to run a script on a regular basis to extract the data, format it, and inject it into BigQuery.
 
-Pour cela, nous allons avoir besoin de faire fonctionner un script de manière régulière pour extraire les données, les formatter et les injecter dans BigQuery.
+Go to [Google Cloud Run](https://console.cloud.google.com/run/) (enable the API if this is your first time).
 
-Redez-vous sur [Google Cloud Run](https://console.cloud.google.com/run/) (Activez l'API si c'est la première fois).
+Once on the Cloud Run dashboard, click **"Write a function"**.
 
-## Créer une fonction
+### Configure a Service
 
-Une fois sur le tableau de bord de Cloud Run, cliquez sur "Ecrire une fonction".
+Name your service: `matomo-bigquery-importer`.
 
-### Configurer un service
+Set the region that corresponds to your legislation: `europe-west1`.
 
-Nommez votre service `matomo-bigquery-importer`.
+Choose a runtime of `Node.js 22` or later.
 
-Définissez la région qui correspond à votre législation '`europe-west-1`).
+Check **"Use IAM to authenticate incoming requests"**.
 
-Choisissez une execution sur `Node.js 22` ou plus récent.
+Check **"Require authentication"**.
 
-Cochez "Utiliser IAM pour authentifier les requêtes entrantes".
+Scroll all the way down and click the blue **"Create"** button.
 
-Cochez "Exiger l'authentification".
+### Add Source Files
 
-Descendez toute en bas et cliquez sur le bouton bleu "Créer".
+Now that your service is created, you need to add source files (the code it will execute).
 
-### Ajouter des sources
+- In the file `index.js`, paste the contents of [`GoogleCloudRun/index.js`](./GoogleCloudRun/index.js)
+- In the file `package.json`, paste the contents of [`GoogleCloudRun/package.json`](./GoogleCloudRun/package.json)
 
-Maintenant que votre service est créé, il faut lui ajouter des source (le code qu'il va executer).
+> In the `index.js` file, the first few lines need to be updated:
 
-- Dans le fichier `index.js`, collez le contenu du fichier `GoogleCloudRun/index.js`
-- Dans le fichier `package.json`, collez le contenu du fichier `GoogleCloudRun/package.json`
+```javascript
+// START CONFIGURATION //
+const matomo_host = 'https://matomo.my-company.com';
+const matomo_site_id = 1;
+const matomo_token_auth = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+const matomo_period = 'day';
+const matomo_date = 'yesterday';
+const matomo_filter_offset = 0;
+const matomo_filter_limit = 1000;
+const big_query_dataset_id = 'matomo_extract';
+const big_query_table_id = 'matomo_visits';
+// END CONFIGURATION //
+```
+Once both files are modified, click **"Save and deploy"**.
 
-Une fois les deux fichiers modifiés, cliquez sur "Enregistrer et déployer".
+### Create a Job for the Cloud Function
 
-### Créer un Job
+In the side menu, select **"Jobs"**.
 
-Dans le menu latéral, sélectionnez "Jobs"
+Click **"Create job"**.
 
-Cliquez sur "Créer un job"
+Select the container image URL by choosing from the list the image with the `latest` badge (feel free to expand the options to find the correct container image).
 
-Selectionnez l'URL de l'image du conteneur en selectionant dans la liste, l'image qui à le badge `latest` (n'hésitez pas à déplier les options pour trouver la bonne image du conteneur).
+Once the image is selected, click **"Save"**.
 
-Une fois l'image selectionnée, cliquez sur en "Enregistrer".
+### Define a Trigger for the Job with Google Scheduler
 
-### Définir un déclencheur avec Google Scheduler
+In your **"Job"**, go to the **"Triggers"** tab.
 
-Dans notre "Job", rendez-vous dans l'onglet "Déclencheurs"
+Click **"Add scheduler trigger"** and set the frequency to `0 2 * * *` (which means 2:00 AM every day).
 
-Cliquez sur "Ajouter un déclencheur de programmeur" et définissez la fréquience sur `0 2 * * *` (ce qui équivaut à 02h du matin tous les jours)
+In the next field, select your **time zone**.
 
-Dans le champs suivant, selectionnez votre fuseaux horaire.
+Then click **"Create"**.
 
-Et cliquez sur "Créer"
+Your task is now created and available in [Google Cloud Scheduler](https://console.cloud.google.com/cloudscheduler).  
+You can test it by clicking the three vertical dots under **"Action"**, then selecting **"Force run"**.
+
+## Disclaimer
+
+> These scripts may evolve over time.  
+> Some values in the JSON object returned by the Matomo API may change and/or may not yet be supported by this script.

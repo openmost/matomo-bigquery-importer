@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3c6281db-0e81-4c2c-af53-ad7415950326" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoogleCloudFunctions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GoogleCloudRun/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoogleCloudFunctions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/GoogleCloudRun/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoogleCloudRun/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/GoogleCloudRun/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750716523536</updated>
       <workItem from="1750716524607" duration="160000" />
-      <workItem from="1750716833364" duration="1418000" />
+      <workItem from="1750716833364" duration="2098000" />
     </task>
     <servers />
   </component>
