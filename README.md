@@ -99,6 +99,13 @@ Then click **"Create"**.
 Your task is now created and available in [Google Cloud Scheduler](https://console.cloud.google.com/cloudscheduler).  
 You can test it by clicking the three vertical dots under **"Action"**, then selecting **"Force run"**.
 
+## Visualise data using BigQuery
+
+When you look at your data, click on the "Request" button and execute any request you want.
+
+You can try to run queries, here are some [demo queries](./GoogleBigQuery/demo-queries.md).
+
+
 ## Disclaimer
 
 > These scripts may evolve over time.  
