@@ -46,7 +46,7 @@ ORDER BY
   total DESC
 LIMIT 50;
 ```
-## Top page URL and title
+# Top page URL and title
 
 ```sql
 SELECT

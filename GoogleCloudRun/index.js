@@ -1,7 +1,7 @@
 // START CONFIGURATION //
-const matomo_host = 'https://demo.ronan-hello.fr';
+const matomo_host = 'https://matomo.example.com';
 const matomo_site_id = 1;
-const matomo_token_auth = 'bb9e8fdd6a4aad34e3f9f832f0ce6ee2';
+const matomo_token_auth = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 const matomo_period = 'day';
 const matomo_date = 'yesterday';
 const matomo_filter_offset = 0;
@@ -201,7 +201,6 @@ exports.importDataFromAPI = async (req, res) => {
                             } : null
                         }));
                     } catch (e) {
-                        console.warn('❗ Échec de parse de `experiments` pour idVisit:', v.idVisit, v.experiments);
                         return [];
                     }
                 })(),
@@ -230,9 +229,9 @@ exports.importDataFromAPI = async (req, res) => {
         });
 
         await bigquery.dataset(big_query_dataset_id).table(big_query_table_id).insert(rows);
-        res.status(200).send(`✅ ${rows.length} lignes insérées dans BigQuery`);
+        res.status(200).send(`✅ ${rows.length} rows added to BigQuery`);
     } catch (error) {
         console.error('Erreur:', error);
-        res.status(500).send(`❌ Erreur pendant l'import des données : ${error.message}\n\n${JSON.stringify(error.errors || error.response?.data || error, null, 2)}`);
+        res.status(500).send(`❌ Error : ${error.message}\n\n${JSON.stringify(error.errors || error.response?.data || error, null, 2)}`);
     }
 };
