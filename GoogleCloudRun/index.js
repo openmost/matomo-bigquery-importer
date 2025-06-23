@@ -211,21 +211,21 @@ exports.importDataFromAPI = async (req, res) => {
                 crashes: typeof v.crashes === 'string' ? parseInt(v.crashes) : v.crashes,
 
                 // Custom dimensions with scope "visits"
-                dimension1: sanitizeForBigQuery(a.dimension1),
-                dimension2: sanitizeForBigQuery(a.dimension2),
-                dimension3: sanitizeForBigQuery(a.dimension3),
-                dimension4: sanitizeForBigQuery(a.dimension4),
-                dimension5: sanitizeForBigQuery(a.dimension5),
-                dimension6: sanitizeForBigQuery(a.dimension6),
-                dimension7: sanitizeForBigQuery(a.dimension7),
-                dimension8: sanitizeForBigQuery(a.dimension8),
-                dimension9: sanitizeForBigQuery(a.dimension9),
-                dimension10: sanitizeForBigQuery(a.dimension10),
-                dimension11: sanitizeForBigQuery(a.dimension11),
-                dimension12: sanitizeForBigQuery(a.dimension12),
-                dimension13: sanitizeForBigQuery(a.dimension13),
-                dimension14: sanitizeForBigQuery(a.dimension14),
-                dimension15: sanitizeForBigQuery(a.dimension15)
+                dimension1: sanitizeForBigQuery(v.dimension1),
+                dimension2: sanitizeForBigQuery(v.dimension2),
+                dimension3: sanitizeForBigQuery(v.dimension3),
+                dimension4: sanitizeForBigQuery(v.dimension4),
+                dimension5: sanitizeForBigQuery(v.dimension5),
+                dimension6: sanitizeForBigQuery(v.dimension6),
+                dimension7: sanitizeForBigQuery(v.dimension7),
+                dimension8: sanitizeForBigQuery(v.dimension8),
+                dimension9: sanitizeForBigQuery(v.dimension9),
+                dimension10: sanitizeForBigQuery(v.dimension10),
+                dimension11: sanitizeForBigQuery(v.dimension11),
+                dimension12: sanitizeForBigQuery(v.dimension12),
+                dimension13: sanitizeForBigQuery(v.dimension13),
+                dimension14: sanitizeForBigQuery(v.dimension14),
+                dimension15: sanitizeForBigQuery(v.dimension15)
             };
         });
 

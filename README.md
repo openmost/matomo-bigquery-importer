@@ -1,97 +1,84 @@
-Activer Cloudfunction et BQ API
 
-Ensuite choisir le prodjet dans la liste, cliquer sur les trois points puis "Créer un ensemble de données"
+## BigQuery
 
-Ensuite cliquerr sur l'ensemble 'Matom oextgract' et créez uen table `matomo_visits` avec le schema suivantt :
+Créez vous un compte bigQuery associé à une propriété Google Cloud Console.
 
-```
-JSON A DEFINIR
-```
+> Assurez-vosu d'avoir un compte de facturation Google Cloud Console à jour.
 
-On va ensuite sur Google Cloud Function
-
-https://console.cloud.google.com/
-
-## Google Cloud Run Function
-
-Activez l'APi de Cloud Run Function
-https://console.cloud.google.com/
-
-- Nom du service : `matomo-data-import`
-- Région : `europe-west1`
-- Execution : `Node.js 22`
-
-Définir l'authentification sur IAM -> Exiger l'authentification
-
-- Activez les API requises (Cloud Build API)
-Da,s Cloud run, définissez node sur Node 22 puis le point d'entrée sur le nom de la fonction soit `importDataFromAPI`.
-
-Dans le `package.json` ajoutez :
-
-```json
-{
-  "dependencies": {
-    "@google-cloud/functions-framework": "^3.0.0",
-    "@google-cloud/bigquery": "^7.0.0",
-    "axios": "^1.6.0"
-  }
-}
-
-```
-
-Dans le `index.js` ajoutez : 
-
-```javascript
-const {BigQuery} = require('@google-cloud/bigquery');
-const axios = require('axios');
-
-const bigquery = new BigQuery();
-const datasetId = 'matomo_extract';
-const tableId = 'matomo_visits';
-
-exports.importDataFromAPI = async (req, res) => {
-  try {
-    const response = await axios.get('https://demo.matomo.cloud/?module=API&method=Live.getLastVisitsDetails&idSite=1&token_auth=anonymous&format=json&period=day&date=yesterday&filter_limit=100');
-
-    const rows = response.data.map(v => ({
-      visitId: v.idVisit.toString(),
-      visitIp: v.visitIp,
-      visitLocalTime: new Date(`${v.lastActionDateTime}Z`)
-    }));
-
-    await bigquery.dataset(datasetId).table(tableId).insert(rows);
-    res.status(200).send(`✅ ${rows.length} lignes insérées dans BigQuery`);
-  } catch (error) {
-    console.error('Erreur:', error);
-    res.status(500).send("❌ Erreur pendant l'import des données.");
-  }
-};
-
-```
+### Activez l'API BigQuery
 
 
-récupérez l'URL De la Cloudfunction
+### Créez un dataset
 
-https://matomo-data-import-939481467647.europe-west1.run.app
+Dans votre projet BigQuery, cliquez sur les trois points verticaux situés à droite du nom du projet et cliquez sur "Créer un ensemble de données"
 
+Nommez votre ensemble de données `matomo_extract`.
 
-### Créer le job dans Cloud Function avec l'onglet Jobs
+Définissez "Région" sur `europe-west-1 (Belgique)`.
 
+Cliquez sur "Créer un ensemble de données".
 
-## Google Cloud Scheduler
+### Créez une table dans le dataset
 
-Actrivez l'API de Clodu Scheduler
-https://console.cloud.google.com/cloudscheduler
+Sur l'ensemble de données (dataset) fraichement créé, cliquez sur les trois points verticaux en face du dataset et ensuite sur "Créer une table".
 
-### Créer une tâche planifiée
-- nom `matomo-daily-import`
-- région: `europe-west-1`
-- Fréqauence : `0 0 * * *` // everyday at midnight
-- fuseau horarire `HAEC` // Europe centrale avec heure d'été (France)
+Dans le champs "Table*" saisissez la valeur `matomo_visits`.
 
-- Cible : `HTTP`
-- URL : `https://matomo-data-import-939481467647.europe-west1.run.app`
-- Sécurité `OIDC` (de GCP a GCP)
+Activez le switch "Modifier sous forme de texte" et collez le contenu du fichier `GoogleBigQuery/bigquery-table-schema.json` de ce repo.
 
+Cliquez ensuite sur le bouton bleu "Créer une table".
 
-## Visualiser les données dans Google BigQuery
+## Google Cloud Run
+
+Maintenant que notre table BigQuery est crée, il va valloir l'alimenter avec des données de l'API de Matomo.
+
+Pour cela, nous allons avoir besoin de faire fonctionner un script de manière régulière pour extraire les données, les formatter et les injecter dans BigQuery.
+
+Redez-vous sur [Google Cloud Run](https://console.cloud.google.com/run/) (Activez l'API si c'est la première fois).
+
+## Créer une fonction
+
+Une fois sur le tableau de bord de Cloud Run, cliquez sur "Ecrire une fonction".
+
+### Configurer un service
+
+Nommez votre service `matomo-bigquery-importer`.
+
+Définissez la région qui correspond à votre législation '`europe-west-1`).
+
+Choisissez une execution sur `Node.js 22` ou plus récent.
+
+Cochez "Utiliser IAM pour authentifier les requêtes entrantes".
+
+Cochez "Exiger l'authentification".
+
+Descendez toute en bas et cliquez sur le bouton bleu "Créer".
+
+### Ajouter des sources
+
+Maintenant que votre service est créé, il faut lui ajouter des source (le code qu'il va executer).
+
+- Dans le fichier `index.js`, collez le contenu du fichier `GoogleCloudRun/index.js`
+- Dans le fichier `package.json`, collez le contenu du fichier `GoogleCloudRun/package.json`
+
+Une fois les deux fichiers modifiés, cliquez sur "Enregistrer et déployer".
+
+### Créer un Job
+
+Dans le menu latéral, sélectionnez "Jobs"
+
+Cliquez sur "Créer un job"
+
+Selectionnez l'URL de l'image du conteneur en selectionant dans la liste, l'image qui à le badge `latest` (n'hésitez pas à déplier les options pour trouver la bonne image du conteneur).
+
+Une fois l'image selectionnée, cliquez sur en "Enregistrer".
+
+### Définir un déclencheur avec Google Scheduler
+
+Dans notre "Job", rendez-vous dans l'onglet "Déclencheurs"
+
+Cliquez sur "Ajouter un déclencheur de programmeur" et définissez la fréquience sur `0 2 * * *` (ce qui équivaut à 02h du matin tous les jours)
+
+Dans le champs suivant, selectionnez votre fuseaux horaire.
+
+Et cliquez sur "Créer"
