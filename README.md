@@ -63,15 +63,17 @@ Now that your service is created, you need to add source files (the code it will
 
 ```javascript
 // START CONFIGURATION //
-const matomo_host = 'https://matomo.my-company.com';
+const matomo_host = 'https://matomo.example.com';
+const matomo_token_auth = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 const matomo_site_id = 1;
-const matomo_token_auth = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 const matomo_period = 'day';
-const matomo_date = 'yesterday';
-const matomo_filter_offset = 0;
-const matomo_filter_limit = 1000;
+const matomo_date = 'yesterday'; 
+const matomo_filter_limit = 100;        // API batch size per request
+const matomo_batch_size = 1000;         // BigQuery insert batch size
+const matomo_max_visits = 50000;        // Maximum visits to process (0 = no limit)
 const big_query_dataset_id = 'matomo_extract';
 const big_query_table_id = 'matomo_visits';
+const delay_between_batches = 1000;     // Delay in milliseconds between API calls
 // END CONFIGURATION //
 ```
 Once both files are modified, click **"Save and deploy"**.
