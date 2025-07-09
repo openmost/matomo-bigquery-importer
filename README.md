@@ -78,7 +78,7 @@ const delay_between_batches = 1000;     // Delay in milliseconds between API cal
 ```
 Once both files are modified, click **"Save and deploy"**.
 
-## Google Cloud Scheduler
+# Google Cloud Scheduler
 
 Go to [Google Cloud Scheduler](https://console.cloud.google.com/cloudscheduler).
 
