@@ -14,6 +14,7 @@ const delay_between_batches = 1000;     // Delay in milliseconds between API cal
 
 const {BigQuery} = require('@google-cloud/bigquery');
 const axios = require('axios');
+const functions = require('@google-cloud/functions-framework');
 
 const bigquery = new BigQuery();
 
@@ -240,7 +241,7 @@ const insertBatchToBigQuery = async (rows) => {
     return rows.length;
 };
 
-exports.importDataFromAPI = async (req, res) => {
+const importDataFromAPI = async (req, res) => {
     try {
         let totalProcessed = 0;
         let currentOffset = 0;
@@ -331,3 +332,9 @@ exports.importDataFromAPI = async (req, res) => {
         res.status(500).send(`${errorMessage}\n\n${JSON.stringify(error.errors || error.response?.data || error, null, 2)}`);
     }
 };
+
+// Register the HTTP function
+functions.http('importDataFromAPI', importDataFromAPI);
+
+// Also export for manual testing
+exports.importDataFromAPI = importDataFromAPI;

@@ -78,28 +78,31 @@ const delay_between_batches = 1000;     // Delay in milliseconds between API cal
 ```
 Once both files are modified, click **"Save and deploy"**.
 
-### Create a Job for the Cloud Function
+### Create a Scheduler for the Cloud Function
 
-In the side menu, select **"Jobs"**.
+Go to [Google Cloud Scheduler](https://console.cloud.google.com/cloudscheduler).
 
-Click **"Create job"**.
+Create a new job.
 
-Select the container image URL by choosing from the list the image with the `latest` badge (feel free to expand the options to find the correct container image).
+Define a name like "matomo-bigquery-importer"
 
-Once the image is selected, click **"Save"**.
+Set your region `europe-west-1 (Belgique)`
 
-### Define a Trigger for the Job with Google Scheduler
+Set the frequency to `0 2 * * *` (which means 2:00 AM every day).
 
-In your **"Job"**, go to the **"Triggers"** tab.
+Set your timestamp.
 
-Click **"Add scheduler trigger"** and set the frequency to `0 2 * * *` (which means 2:00 AM every day).
+Click **Continue**
 
-In the next field, select your **time zone**.
+Now define the target as `HTTP`.
 
-Then click **"Create"**.
+The URL is the URL of your Cloud Run Function (available from your Cloud Run function dashboard).
 
-Your task is now created and available in [Google Cloud Scheduler](https://console.cloud.google.com/cloudscheduler).  
-You can test it by clicking the three vertical dots under **"Action"**, then selecting **"Force run"**.
+Set method to **POST**
+
+For the authorization, select **OIDC token** and select your service account.
+
+In the last part, set an attempt limit to 2 and save.
 
 ## Visualise data using BigQuery
 
