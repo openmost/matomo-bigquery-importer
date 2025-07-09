@@ -78,7 +78,7 @@ const delay_between_batches = 1000;     // Delay in milliseconds between API cal
 ```
 Once both files are modified, click **"Save and deploy"**.
 
-### Create a Scheduler for the Cloud Function
+## Google Cloud Scheduler
 
 Go to [Google Cloud Scheduler](https://console.cloud.google.com/cloudscheduler).
 
@@ -113,5 +113,6 @@ You can try to run queries, here are some [demo queries](./GoogleBigQuery/demo-q
 
 ## Disclaimer
 
-> These scripts may evolve over time.  
-> Some values in the JSON object returned by the Matomo API may change and/or may not yet be supported by this script.
+> These scripts may evolve over time.
+> 
+> Openmost cannot be held responsible for any price overruns in Google Cloud environments.
